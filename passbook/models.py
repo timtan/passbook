@@ -88,12 +88,12 @@ class NumberField(Field):
 
 class Barcode(object):
 
-    def __init__(self, message, format=BarcodeFormat.PDF417):
+    def __init__(self, message, format=BarcodeFormat.PDF417, encoding='iso-8859-1', altText= ''):
 
-        self.format = format
         self.message = message # Required. Message or payload to be displayed as a barcode
-        self.messageEncoding = 'iso-8859-1' # Required. Text encoding that is used to convert the message
-        self.altText = '' # Optional. Text displayed near the barcode
+        self.format = format
+        self.messageEncoding = encoding# Required. Text encoding that is used to convert the message
+        self.altText = altText # Optional. Text displayed near the barcode
 
     def json_dict(self):
         return self.__dict__
@@ -223,9 +223,10 @@ class Pass(object):
         
         
     # Adds file to the file array
-    def addFile(self, name, fd):
-        self._files[name] = fd.read()
-    
+    def addFile(self, name, data):
+        self._files[name] = data
+
+
     # Creates the actual .pkpass file
     def create(self, certificate, key, wwdr_certificate, password, zip_file=None):
         pass_json = self._createPassJson()
