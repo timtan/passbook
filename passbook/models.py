@@ -124,6 +124,9 @@ class PassInformation(object):
     def addPrimaryField(self, key, value, label):
         self.primaryFields.append(Field(key, value, label))
 
+    def addAuxiliaryFields(self, key, value, label):
+        self.auxiliaryFields.append(Field(key, value, label))
+
     def addSecondaryField(self, key, value, label):
         self.secondaryFields.append(Field(key, value, label))
 
